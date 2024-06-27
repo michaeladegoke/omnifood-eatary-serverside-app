@@ -1,7 +1,8 @@
 const express = require("express");
 const usersRouter = require("../routes/usersAuth");
 const menuRouter = require("../routes/eateryMenu");
-const orderRouter = require("../routes/orderItem");
+//const orderRouter = require("../routes/orderItem");
+
 
 
 
@@ -30,7 +31,7 @@ module.exports = (app) => {
     const VERSION = "/api/v1";
     
     app.use(`${VERSION}/usersAuth`, usersRouter);
-    //app.use(`${VERSION}/eateryMenu`, menuRouter);
+    app.use(`${VERSION}/eateryMenu`, menuRouter);
     //app.use(`${VERSION}/orderItem`, orderRouter);
 
 

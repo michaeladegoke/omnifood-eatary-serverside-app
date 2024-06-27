@@ -1,0 +1,27 @@
+const otpModel = require("../models/otpmodel");
+const { signUpOtp } = require("../utils/email/auth");
+const StatusCode = require("../utils/StatusCode");
+const { generateOTP } = require("../utils/generateToken");
+
+const otpValidation = async (req, res, next) => {
+    const { email } = req.body;
+    const OTP = await generateOTP();
+    console.log(OTP);
+
+    await otpModel.create({
+        email: email,
+        code: OTP,  // Change this line
+        type: "Signup",
+        created_at: new Date(),
+        otpExpiresAt: new Date(Date.now() + 60 * 60 * 1000)  // Make sure this is a Date object
+    });
+
+    await signUpOtp(email, OTP);
+
+    return res.status(StatusCode.CREATED).json({
+        status: true,
+        msg: "check email for otp sent",
+    });
+};
+
+module.exports = { otpValidation }

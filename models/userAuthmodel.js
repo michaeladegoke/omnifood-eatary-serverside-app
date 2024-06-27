@@ -36,3 +36,4 @@ const usersAuthSchema = mongoose.Schema(
 );
 
 module.exports = mongoose.model('usersauth', usersAuthSchema);
+
