@@ -20,15 +20,15 @@ const logger = winston.createLogger({
     ],
 });
 
-//const db = process.env.DB_URI;
-const { db } = require("../config/config")
+const db = process.env.DB_URI;
+//const { db } = require("../config/config")
 
 mongoose.set("strictQuery", false);
 
 module.exports = function() {
   mongoose.connect(db)
     .then(() => logger.info('omnifood server Db Connected Successfully!'))
-    .catch(err => logger.error('Error connecting to Resida Db', err));
+    .catch(err => logger.error('Error connecting to Omnifood Db', err));
   
   mongoose.connection.on('reconnected', () => {
     logger.info('omnifood server Db Reconnected Successfully!');
