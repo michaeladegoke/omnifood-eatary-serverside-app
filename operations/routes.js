@@ -35,6 +35,11 @@ module.exports = (app) => {
     app.use(`${VERSION}/orderItem`, orderRouter);
 
 
+ // Add a route for the root URL
+    app.get('/', (req, res) => {
+          res.json({ status: true, message: "Welcome to Omnifood API" });
+     });
+
     app.get('/try', (req, res, next) => {
         res.json({ status: true, message: "Welcome to Contacts API" });
     });
